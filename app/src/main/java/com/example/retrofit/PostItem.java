@@ -3,20 +3,24 @@ package com.example.retrofit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-class Post {
+public class PostItem {
     @SerializedName("status")
     @Expose
     private boolean status;
     @SerializedName("data")
     @Expose
-    private List<DataStorage> data = null;
+    private DataStorage data = null;
+    @SerializedName("error")
+    @Expose
+    private String error;
 
     boolean getStatus() {
         return status;
     }
-    List<DataStorage> getData() {
+    DataStorage getData() {
         return data;
+    }
+    String getError(){
+        return error;
     }
 }

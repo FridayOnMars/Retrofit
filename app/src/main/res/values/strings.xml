@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Retrofit</string>
+    <string name="format_ItemTitle" >title: %s</string>
+    <string name="format_ItemActualTime" >actual time: %s</string>
+    <string name="format_ItemStatus" >status: %s</string>
+    <string name="format_ItemLocation" >location: %s</string>
+    <string name="format_ItemDescription" >description: %s</string>
+    <string name="format_ItemSpecialist" >specialist: %s %s</string>
+    <string name="format_title" >title: %s</string>
+    <string name="format_ActualTime" >actual time: %s</string>
+    <string name="format_status" >status: %s</string>
+    <string name="format_location" >location: %s</string>
+    <string name="button_click">Приступить</string>
 </resources>

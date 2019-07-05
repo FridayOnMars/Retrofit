@@ -6,7 +6,7 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_below="@+id/spinner"
@@ -16,9 +16,4 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:scrollbars="vertical">
     </androidx.recyclerview.widget.RecyclerView>
-<TextView
-    android:id="@+id/textView"
-    android:layout_below="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
 </RelativeLayout>
