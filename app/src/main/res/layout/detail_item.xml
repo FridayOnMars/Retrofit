@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="15dp"
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/tvItemTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
         android:text="@string/format_ItemTitle"/>
     <TextView
         android:id="@+id/tvItemActualTime"
         android:layout_below="@+id/tvItemTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
         android:text="@string/format_ItemActualTime"/>
     <TextView
         android:id="@+id/tvItemStatus"
         android:layout_below="@+id/tvItemActualTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
         android:text="@string/format_ItemStatus"/>
     <TextView
         android:id="@+id/tvItemLocation"
         android:layout_below="@+id/tvItemStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
         android:text="@string/format_ItemLocation"/>
     <TextView
         android:id="@+id/tvItemDescription"
         android:layout_below="@+id/tvItemLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
         android:text="@string/format_ItemDescription"/>
     <TextView
         android:id="@+id/tvItemSpecialist"
         android:layout_below="@+id/tvItemDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
         android:text="@string/format_ItemSpecialist"/>
     <RelativeLayout
         android:id="@+id/frag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:layout_below="@+id/tvItemDescription">
     </RelativeLayout>
 
