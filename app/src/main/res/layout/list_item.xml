@@ -10,27 +10,27 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:text="@string/format_title"/>
     <TextView
         android:id="@+id/tvActualTime"
         android:layout_below="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:text="@string/format_ActualTime"/>
     <TextView
         android:id="@+id/tvStatus"
         android:layout_below="@+id/tvActualTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:text="@string/format_status"/>
     <TextView
         android:id="@+id/tvLocation"
         android:layout_below="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:text="@string/format_location"/>
 </RelativeLayout>
