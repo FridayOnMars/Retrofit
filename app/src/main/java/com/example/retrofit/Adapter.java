@@ -10,15 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     private LayoutInflater inflater;
     private List<GetData> getData;
     private ItemFromActivity connect;
-    @SuppressLint("SimpleDateFormat")
-    private final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
 
     Adapter(Context context, List<GetData> getData){
         this.getData = getData;
@@ -55,7 +52,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
             }
         });
         holder.tvTitle.setText(data.getTitle());
-        holder.tvActualTime.setText(time.format(data.getActualTime()*1000));
+        holder.tvActualTime.setText(data.getActualTime());
         holder.tvStatus.setText(data.getStatus());
         holder.tvLocation.setText(data.getLocation());
     }

@@ -2,10 +2,9 @@ package com.example.retrofit;
 
 class GetData {
     private int id;
-    private long actualTime;
-    private String title, status, location;
+    private String title, status, location, actualTime;
 
-    GetData(int id, String title, long actualTime, String status, String location){
+    GetData(int id, String title, String actualTime, String status, String location){
         this.id = id;
         this.title = title;
         this.actualTime = actualTime;
@@ -19,7 +18,7 @@ class GetData {
     String getTitle(){
         return title;
     }
-    long getActualTime(){
+    String getActualTime(){
         return actualTime;
     }
     String getStatus(){

@@ -21,6 +21,7 @@ public class MoreInformationItem extends AppCompatActivity {
     TextView tvItemLocation;
     TextView tvItemDescription;
     TextView tvItemSpecialist;
+    ButtonFragment fragmentBnt = new ButtonFragment();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,7 +35,6 @@ public class MoreInformationItem extends AppCompatActivity {
         tvItemDescription = findViewById(R.id.tvItemDescription);
         tvItemSpecialist = findViewById(R.id.tvItemSpecialist);
         getContent(id);
-        ButtonFragment fragmentBnt = new ButtonFragment();
     }
     private void getContent(int id){
         @SuppressLint("SimpleDateFormat")
@@ -58,6 +58,7 @@ public class MoreInformationItem extends AppCompatActivity {
                                      }
                                      else {
                                          tvItemSpecialist.setText("");
+                                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, fragmentBnt).commit();
                                      }
                                  }
                                  else {
