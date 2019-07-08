@@ -1,31 +1,14 @@
 package com.example.retrofit;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
-
-public class DataStorage {
-    @SerializedName("id")
-    @Expose
+public class PostListItem {
     private int id;
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("actual_time")
-    @Expose
     private long actual_time;
-    @SerializedName("status")
-    @Expose
     private String status;
-    @SerializedName("location")
-    @Expose
     private String location;
-    @SerializedName("description")
-    @Expose
     private String description;
-    @SerializedName("specialist")
-    @Expose
-    private SpecialistStorage spec = null;
+    private PostItemSpecialist specialist;
 
     int getId(){
         return id;
@@ -45,7 +28,7 @@ public class DataStorage {
     String getDescription(){
         return description;
     }
-    SpecialistStorage getSpecialist(){
-        return spec;
+    PostItemSpecialist getSpecialist(){
+        return specialist;
     }
 }

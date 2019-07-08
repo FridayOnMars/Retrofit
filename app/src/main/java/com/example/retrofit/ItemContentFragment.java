@@ -1,12 +1,16 @@
 package com.example.retrofit;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 
@@ -14,28 +18,51 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoreInformationItem extends AppCompatActivity {
-    TextView tvItemTitle;
-    TextView tvItemActualTime;
-    TextView tvItemStatus;
-    TextView tvItemLocation;
-    TextView tvItemDescription;
-    TextView tvItemSpecialist;
-    ButtonFragment fragmentBnt = new ButtonFragment();
+public class ItemContentFragment extends Fragment implements View.OnClickListener {
+    private FragmentCallToActivity connect;
+    private TextView tvItemTitle;
+    private TextView tvItemActualTime;
+    private TextView tvItemStatus;
+    private TextView tvItemLocation;
+    private TextView tvItemDescription;
+    private TextView tvItemSpecialist;
+    private Button btn;
+    private int id;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_item);
-        int id = getIntent().getIntExtra("id", 0);
-        tvItemTitle = findViewById(R.id.tvItemTitle);
-        tvItemActualTime = findViewById(R.id.tvItemActualTime);
-        tvItemStatus = findViewById(R.id.tvItemStatus);
-        tvItemLocation = findViewById(R.id.tvItemLocation);
-        tvItemDescription = findViewById(R.id.tvItemDescription);
-        tvItemSpecialist = findViewById(R.id.tvItemSpecialist);
-        getContent(id);
+    public interface FragmentCallToActivity{
+        void onDialog(boolean a);
     }
+
+    public void onAttach(Context context){
+        super.onAttach(context);
+        if(context instanceof FragmentCallToActivity){
+            connect = (FragmentCallToActivity) context;
+        }
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View rootView = inflater.inflate(R.layout.item_content_fragment, container, false);
+        if(getArguments() != null){
+            id = getArguments().getInt("id");
+        }
+        tvItemTitle = rootView.findViewById(R.id.tvItemTitle);
+        tvItemActualTime = rootView.findViewById(R.id.tvItemActualTime);
+        tvItemStatus = rootView.findViewById(R.id.tvItemStatus);
+        tvItemLocation = rootView.findViewById(R.id.tvItemLocation);
+        tvItemDescription = rootView.findViewById(R.id.tvItemDescription);
+        tvItemSpecialist = rootView.findViewById(R.id.tvItemSpecialist);
+        btn = rootView.findViewById(R.id.bntClick);
+        getContent(id);
+        rootView.findViewById(R.id.bntClick).setOnClickListener(this);
+        return rootView;
+    }
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.bntClick){
+            connect.onDialog(true);
+        }
+    }
+
     private void getContent(int id){
         @SuppressLint("SimpleDateFormat")
         final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
@@ -44,7 +71,7 @@ public class MoreInformationItem extends AppCompatActivity {
                 .getPostWithID(id)
                 .enqueue(new Callback<PostItem>() {
                              @Override
-                             public void onResponse(Call<PostItem> call, Response<PostItem> response) {
+                             public void onResponse(@NonNull Call<PostItem> call, @NonNull Response<PostItem> response) {
                                  PostItem post = response.body();
                                  assert post != null;
                                  if (post.getStatus()) {
@@ -55,10 +82,10 @@ public class MoreInformationItem extends AppCompatActivity {
                                      tvItemDescription.setText(String.format(getString(R.string.format_ItemDescription),post.getData().getDescription()));
                                      if(!post.getData().getStatus().equals("open")){
                                          tvItemSpecialist.setText(String.format(getString(R.string.format_ItemSpecialist),post.getData().getSpecialist().getFirstName(), post.getData().getSpecialist().getLastName()));
+                                         btn.setVisibility(View.INVISIBLE);
                                      }
                                      else {
                                          tvItemSpecialist.setText("");
-                                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, fragmentBnt).commit();
                                      }
                                  }
                                  else {
@@ -68,11 +95,12 @@ public class MoreInformationItem extends AppCompatActivity {
                                      tvItemLocation.setText("");
                                      tvItemDescription.setText("");
                                      tvItemSpecialist.setText("");
+                                     btn.setVisibility(View.INVISIBLE);
                                  }
                              }
 
                              @Override
-                             public void onFailure(Call<PostItem> call, Throwable t) {
+                             public void onFailure(@NonNull Call<PostItem> call, @NonNull Throwable t) {
                                  t.printStackTrace();
                              }
                          }

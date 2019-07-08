@@ -10,5 +10,5 @@ public interface JSONPlaceHolderApi {
     Call<PostItem> getPostWithID(@Path("id") int id);
 
     @GET("/test/list.json")
-    Call<Post> getAllList();
+    Call<PostList> getAllList();
 }

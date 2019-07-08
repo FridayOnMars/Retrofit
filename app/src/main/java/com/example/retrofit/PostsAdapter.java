@@ -1,10 +1,10 @@
 package com.example.retrofit;
 
-class GetData {
+class PostsAdapter {
     private int id;
     private String title, status, location, actualTime;
 
-    GetData(int id, String title, String actualTime, String status, String location){
+    PostsAdapter(int id, String title, String actualTime, String status, String location){
         this.id = id;
         this.title = title;
         this.actualTime = actualTime;

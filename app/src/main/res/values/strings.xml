@@ -1,14 +1,22 @@
 <resources>
     <string name="app_name">Retrofit</string>
-    <string name="format_ItemTitle" >title: %s</string>
-    <string name="format_ItemActualTime" >actual time: %s</string>
-    <string name="format_ItemStatus" >status: %s</string>
-    <string name="format_ItemLocation" >location: %s</string>
-    <string name="format_ItemDescription" >description: %s</string>
-    <string name="format_ItemSpecialist" >specialist: %s %s</string>
-    <string name="format_title" >title: %s</string>
-    <string name="format_ActualTime" >actual time: %s</string>
-    <string name="format_status" >status: %s</string>
-    <string name="format_location" >location: %s</string>
+    <string name="format_ItemTitle" >Название: %s</string>
+    <string name="format_ItemActualTime" >Фактическое время: %s</string>
+    <string name="format_ItemStatus" >Статус заявки: %s</string>
+    <string name="format_ItemLocation" >Местоположение: %s</string>
+    <string name="format_ItemDescription" >Описание: %s</string>
+    <string name="format_ItemSpecialist" >Специалист: %s %s</string>
+    <string name="format_title" >Название: %s</string>
+    <string name="format_ActualTime" >Фактическое время: %s</string>
+    <string name="format_status" >Статус: %s</string>
+    <string name="format_location" >Местоположение: %s</string>
     <string name="text_button_click">Приступить</string>
+    <string name="text_button">Закрыть</string>
+    <string name="text_dialog" />
+    <string-array name="status">
+        <item>Все</item>
+        <item name="open">Открытые</item>
+        <item name="in_progress">Занятые</item>
+        <item name="closed">Закрытые</item>
+    </string-array>
 </resources>

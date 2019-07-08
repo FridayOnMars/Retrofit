@@ -1,6 +1,5 @@
 package com.example.retrofit;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
+public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>{
     private LayoutInflater inflater;
-    private List<GetData> getData;
+    private List<PostsAdapter> getData;
     private ItemFromActivity connect;
 
-    Adapter(Context context, List<GetData> getData){
+    TasksAdapter(Context context, List<PostsAdapter> getData){
         this.getData = getData;
         this.inflater = LayoutInflater.from(context);
     }
@@ -44,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final GetData data = getData.get(position);
+        final PostsAdapter data = getData.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
