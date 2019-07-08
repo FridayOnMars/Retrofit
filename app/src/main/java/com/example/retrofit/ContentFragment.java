@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,8 @@ public class ContentFragment extends Fragment{
     private static final String APP_PREFERENCES_NUMBER = "Number";
     @SuppressLint("SimpleDateFormat")
     private final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
+    //String[] status = getResources().getStringArray(R.array.status);
+    //String[] statusTranslate = getResources().getStringArray(R.array.status_translate);
 
     @Nullable
     @Override
@@ -89,13 +92,22 @@ public class ContentFragment extends Fragment{
                              public void onResponse(@NonNull Call<PostList> call, @NonNull Response<PostList> response) {
                                  PostList post = response.body();
                                  assert post != null;
+                                 int i=-1;
+                                 String[] status = getResources().getStringArray(R.array.status);
                                  if (post.getStatus()) {
                                      posts.clear();
                                      for (PostListItem itemId : post.getData()){
+                                         for(String stat: getResources().getStringArray(R.array.status_translate)){
+                                             i++;
+                                             if(stat.equals(itemId.getStatus())){
+                                                 break;
+                                             }
+                                         }
                                          if (getStatusSpinner.equals("all"))
-                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), String.format(getString(R.string.format_ActualTime), time.format(itemId.getActual_time()*1000)), String.format(getString(R.string.format_status),itemId.getStatus()), String.format(getString(R.string.format_location),itemId.getLocation())));
+                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), String.format(getString(R.string.format_ActualTime), time.format(itemId.getActual_time()*1000)), String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
                                          else if(itemId.getStatus().equals(getStatusSpinner))
-                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), String.format(getString(R.string.format_ActualTime), time.format(itemId.getActual_time()*1000)), String.format(getString(R.string.format_status),itemId.getStatus()), String.format(getString(R.string.format_location),itemId.getLocation())));
+                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), String.format(getString(R.string.format_ActualTime), time.format(itemId.getActual_time()*1000)), String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
+                                         i=-1;
                                      }
                                      adapter.notifyDataSetChanged();
                                  }
@@ -104,6 +116,8 @@ public class ContentFragment extends Fragment{
                              @Override
                              public void onFailure(@NonNull Call<PostList> call, @NonNull Throwable t) {
                                  t.printStackTrace();
+                                 Toast toast = Toast.makeText(getActivity(), "Ошибка подключения. Повторите позже", Toast.LENGTH_SHORT);
+                                 toast.show();
                              }
                          }
                 );

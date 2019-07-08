@@ -15,8 +15,14 @@
     <string name="text_dialog" />
     <string-array name="status">
         <item>Все</item>
-        <item name="open">Открытые</item>
-        <item name="in_progress">Занятые</item>
-        <item name="closed">Закрытые</item>
+        <item>Открыта</item>
+        <item>Занята</item>
+        <item>Закрыта</item>
+    </string-array>
+    <string-array name="status_translate">
+        <item>all</item>
+        <item>open</item>
+        <item>in_progress</item>
+        <item>closed</item>
     </string-array>
 </resources>

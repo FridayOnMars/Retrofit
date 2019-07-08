@@ -13,8 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 
 public class ItemActivity extends AppCompatActivity implements ItemContentFragment.FragmentCallToActivity{
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +25,9 @@ public class ItemActivity extends AppCompatActivity implements ItemContentFragme
         }
         ItemContentFragment fragmentContent = new ItemContentFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frag, fragmentContent).commit();
-        int id = getIntent().getIntExtra("id", 0);
         Bundle btnBundle = new Bundle();
-        btnBundle.putInt("id", id);
+        btnBundle.putInt("id", getIntent().getIntExtra("id", 0));
+        btnBundle.putString("status", getIntent().getStringExtra("status"));
         fragmentContent.setArguments(btnBundle);
     }
 
@@ -57,5 +55,11 @@ public class ItemActivity extends AppCompatActivity implements ItemContentFragme
             tvText.setText("Извините, данный функционал еще в разработке");
             dialog.show();
         }
+    }
+
+    @Override
+    public void onCheckInternet(boolean a) {
+        if (!a)
+            finish();
     }
 }

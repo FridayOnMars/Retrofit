@@ -22,7 +22,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>{
     }
 
     public interface ItemFromActivity{
-        void getInfoForNewActivity(int id);
+        void getInfoForNewActivity(int id, String status);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connect.getInfoForNewActivity(data.getId());
+                connect.getInfoForNewActivity(data.getId(),data.getStatus());
             }
         });
         holder.tvTitle.setText(data.getTitle());

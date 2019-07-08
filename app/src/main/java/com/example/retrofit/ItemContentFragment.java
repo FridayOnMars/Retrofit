@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,9 +29,11 @@ public class ItemContentFragment extends Fragment implements View.OnClickListene
     private TextView tvItemSpecialist;
     private Button btn;
     private int id;
+    private String status;
 
     public interface FragmentCallToActivity{
         void onDialog(boolean a);
+        void onCheckInternet(boolean a);
     }
 
     public void onAttach(Context context){
@@ -44,6 +47,7 @@ public class ItemContentFragment extends Fragment implements View.OnClickListene
         View rootView = inflater.inflate(R.layout.item_content_fragment, container, false);
         if(getArguments() != null){
             id = getArguments().getInt("id");
+            status = getArguments().getString("status");
         }
         tvItemTitle = rootView.findViewById(R.id.tvItemTitle);
         tvItemActualTime = rootView.findViewById(R.id.tvItemActualTime);
@@ -77,7 +81,7 @@ public class ItemContentFragment extends Fragment implements View.OnClickListene
                                  if (post.getStatus()) {
                                      tvItemTitle.setText(String.format(getString(R.string.format_ItemTitle),post.getData().getTitle()));
                                      tvItemActualTime.setText(String.format(getString(R.string.format_ActualTime), time.format(post.getData().getActual_time()*1000)));
-                                     tvItemStatus.setText(String.format(getString(R.string.format_ItemStatus),post.getData().getStatus()));
+                                     tvItemStatus.setText(String.format(getString(R.string.format_ItemStatus),status));
                                      tvItemLocation.setText(String.format(getString(R.string.format_ItemLocation),post.getData().getLocation()));
                                      tvItemDescription.setText(String.format(getString(R.string.format_ItemDescription),post.getData().getDescription()));
                                      if(!post.getData().getStatus().equals("open")){
@@ -102,6 +106,9 @@ public class ItemContentFragment extends Fragment implements View.OnClickListene
                              @Override
                              public void onFailure(@NonNull Call<PostItem> call, @NonNull Throwable t) {
                                  t.printStackTrace();
+                                 Toast toast = Toast.makeText(getActivity(), "Ошибка подключения. Повторите позже", Toast.LENGTH_SHORT);
+                                 toast.show();
+                                 connect.onCheckInternet(false);
                              }
                          }
                 );

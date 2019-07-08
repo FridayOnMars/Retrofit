@@ -21,8 +21,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Item
     }
 
     @Override
-    public void getInfoForNewActivity(int id) {
+    public void getInfoForNewActivity(int id, String status) {
         intent.putExtra("id", id);
+        intent.putExtra("status", status);
         startActivity(intent);
     }
 }
