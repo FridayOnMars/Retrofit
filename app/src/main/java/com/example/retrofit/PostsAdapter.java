@@ -2,9 +2,10 @@ package com.example.retrofit;
 
 class PostsAdapter {
     private int id;
-    private String title, status, location, actualTime;
+    private long actualTime;
+    private String title, status, location;
 
-    PostsAdapter(int id, String title, String actualTime, String status, String location){
+    PostsAdapter(int id, String title, long actualTime, String status, String location){
         this.id = id;
         this.title = title;
         this.actualTime = actualTime;
@@ -18,7 +19,7 @@ class PostsAdapter {
     String getTitle(){
         return title;
     }
-    String getActualTime(){
+    long getActualTime(){
         return actualTime;
     }
     String getStatus(){
