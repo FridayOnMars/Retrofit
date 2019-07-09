@@ -1,5 +1,6 @@
 package com.example.retrofit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>{
     private LayoutInflater inflater;
     private List<PostsAdapter> getData;
     private ItemFromActivity connect;
+    @SuppressLint("SimpleDateFormat")
+    private final SimpleDateFormat time = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
+
 
     TasksAdapter(Context context, List<PostsAdapter> getData){
         this.getData = getData;
@@ -51,7 +56,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>{
             }
         });
         holder.tvTitle.setText(data.getTitle());
-        holder.tvActualTime.setText(data.getActualTime());
+        holder.tvActualTime.setText(String.format("Фактическое время: %s", time.format(data.getActualTime())));
         holder.tvStatus.setText(data.getStatus());
         holder.tvLocation.setText(data.getLocation());
     }
