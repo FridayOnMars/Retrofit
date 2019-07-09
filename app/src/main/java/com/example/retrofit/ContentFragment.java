@@ -36,8 +36,6 @@ public class ContentFragment extends Fragment{
     private static final String APP_PREFERENCES_NUMBER = "Number";
     @SuppressLint("SimpleDateFormat")
     private final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
-    //String[] status = getResources().getStringArray(R.array.status);
-    //String[] statusTranslate = getResources().getStringArray(R.array.status_translate);
 
     @Nullable
     @Override
