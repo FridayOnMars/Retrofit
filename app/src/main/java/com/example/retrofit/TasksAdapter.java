@@ -18,7 +18,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>{
     private List<PostsAdapter> getData;
     private ItemFromActivity connect;
     @SuppressLint("SimpleDateFormat")
-    private final SimpleDateFormat time = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
+    private final SimpleDateFormat time = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
 
     TasksAdapter(Context context, List<PostsAdapter> getData){

@@ -2,7 +2,6 @@ package com.example.retrofit;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -34,14 +34,6 @@ public class ContentFragment extends Fragment{
     private View rootView;
     private static final String APP_PREFERENCES = "mysettings";
     private static final String APP_PREFERENCES_NUMBER = "Number";
-<<<<<<< HEAD
-    @SuppressLint("SimpleDateFormat")
-    private final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
-<<<<<<< HEAD
-=======
->>>>>>> 5a99cb1... add sort of actual time
-=======
->>>>>>> develop
 
     @Nullable
     @Override
@@ -113,8 +105,7 @@ public class ContentFragment extends Fragment{
                                              posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), itemId.getActual_time()*1000, String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
                                          i=-1;
                                      }
-                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                         posts.sort(new Comparator<PostsAdapter>() {
+                                         Comparator<PostsAdapter> comparator = new Comparator<PostsAdapter>() {
                                              @Override
                                              public int compare(PostsAdapter o1, PostsAdapter o2) {
                                                  if(o1.getActualTime() == o2.getActualTime())
@@ -124,8 +115,8 @@ public class ContentFragment extends Fragment{
                                                  else
                                                      return -1;
                                              }
-                                         });
-                                     }
+                                         };
+                                     Collections.sort(posts, comparator);
                                      adapter.notifyDataSetChanged();
                                  }
                              }
