@@ -37,8 +37,11 @@ public class ContentFragment extends Fragment{
 <<<<<<< HEAD
     @SuppressLint("SimpleDateFormat")
     private final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
+<<<<<<< HEAD
 =======
 >>>>>>> 5a99cb1... add sort of actual time
+=======
+>>>>>>> develop
 
     @Nullable
     @Override
