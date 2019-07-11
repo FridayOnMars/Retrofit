@@ -69,7 +69,7 @@ public class ItemContentFragment extends Fragment implements View.OnClickListene
 
     private void getContent(int id){
         @SuppressLint("SimpleDateFormat")
-        final SimpleDateFormat time = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
+        final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
         NetworkService.getInstance()
                 .getJSONApi()
                 .getPostWithID(id)

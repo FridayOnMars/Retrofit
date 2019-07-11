@@ -1,8 +1,8 @@
 package com.example.retrofit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,6 +34,8 @@ public class ContentFragment extends Fragment{
     private View rootView;
     private static final String APP_PREFERENCES = "mysettings";
     private static final String APP_PREFERENCES_NUMBER = "Number";
+    @SuppressLint("SimpleDateFormat")
+    private final SimpleDateFormat time = new SimpleDateFormat("dd MM yyyy, HH:mm");
 
     @Nullable
     @Override
@@ -100,23 +102,10 @@ public class ContentFragment extends Fragment{
                                              }
                                          }
                                          if (getStatusSpinner.equals("all"))
-                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), itemId.getActual_time()*1000, String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
+                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), String.format(getString(R.string.format_ActualTime), time.format(itemId.getActual_time()*1000)), String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
                                          else if(itemId.getStatus().equals(getStatusSpinner))
-                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), itemId.getActual_time()*1000, String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
+                                             posts.add(new PostsAdapter(itemId.getId(), String.format(getString(R.string.format_title),itemId.getTitle()), String.format(getString(R.string.format_ActualTime), time.format(itemId.getActual_time()*1000)), String.format(getString(R.string.format_status),status[i]), String.format(getString(R.string.format_location),itemId.getLocation())));
                                          i=-1;
-                                     }
-                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                         posts.sort(new Comparator<PostsAdapter>() {
-                                             @Override
-                                             public int compare(PostsAdapter o1, PostsAdapter o2) {
-                                                 if(o1.getActualTime() == o2.getActualTime())
-                                                     return 0;
-                                                 else if(o1.getActualTime()>o2.getActualTime())
-                                                     return 1;
-                                                 else
-                                                     return -1;
-                                             }
-                                         });
                                      }
                                      adapter.notifyDataSetChanged();
                                  }
